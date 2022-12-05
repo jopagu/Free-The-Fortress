@@ -138,14 +138,20 @@
 	|sprBullet
 	|sprBow
 	|sprPlayerFall
+	|sprPlayerFallNoArm
 	|sprPlayerIdle
+	|sprPlayerIdleNoArm
 	|sprPlayerJump
+	|sprPlayerJumpNoArm
 	|sprPlayerRunning
+	|sprPlayerRunningNoArm
 	|sprPlayerRunningOld
 	|sprPlayerSliding
 	|sprPlayerBack
 	|sprPlayerLadderUD
 	|sprPlayerLadderLR
+	|sprSpear
+	|sprSpearHand
 	+death
 		|sprBlood
 		|sprGibsBody

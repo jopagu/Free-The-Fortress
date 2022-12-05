@@ -381,6 +381,8 @@
 +Decorations
 	|Cage
 	|UpArrow
++Weapons
+	|SpearInHand
 |PlayerStart
 |Block
 |Platform

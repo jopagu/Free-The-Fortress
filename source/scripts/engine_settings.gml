@@ -9,7 +9,7 @@
     global.fullscreen_cursor_visible=false
     global.fullscreen_caption_visible=true
     //first room that's actually part of the game
-    global.first_room=rmHub
+    global.first_room=rm1
     //room to return to when using WarpToHub object
     global.hub_room=rmHub
     //password for encrypting saves.

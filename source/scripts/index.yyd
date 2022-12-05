@@ -217,3 +217,4 @@ unset_dialogue_flag
 check_dialogue_flag
 add_required_flag
 add_required_false_flag
+skin_noarm

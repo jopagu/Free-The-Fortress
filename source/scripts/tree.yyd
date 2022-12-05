@@ -167,6 +167,7 @@
 +skins
 	|change_skin
 	|skin_default
+	|skin_noarm
 	|skin_dotkid
 	|skin_shootkid
 	|skin_vvvvvv

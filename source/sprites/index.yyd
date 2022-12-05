@@ -344,3 +344,11 @@ sprSlimeTop
 sprSlimeRight
 sprSlime
 sprFlagSetter
+sprSpear
+
+
+sprSpearHand
+sprPlayerFallNoArm
+sprPlayerIdleNoArm
+sprPlayerJumpNoArm
+sprPlayerRunningNoArm
