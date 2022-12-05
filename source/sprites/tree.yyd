@@ -151,6 +151,7 @@
 	|sprPlayerLadderUD
 	|sprPlayerLadderLR
 	|sprSpear
+	|sprSpearHead
 	|sprSpearHand
 	+death
 		|sprBlood

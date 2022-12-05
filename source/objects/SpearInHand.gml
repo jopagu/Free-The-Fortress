@@ -83,8 +83,8 @@ if(throwing && global.key[key_shoot]){
     if(force <= 10){
         force += 0.2
     }
-    dx = -image_xscale * lengthdir_x(force, image_angle)
-    dy = -image_xscale * lengthdir_y(force, image_angle)
+    dx = -image_xscale * lengthdir_x(force - 3, image_angle)
+    dy = -image_xscale * lengthdir_y(force - 3, image_angle)
     x += dx
     y += dy
 }
