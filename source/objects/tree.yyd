@@ -383,6 +383,7 @@
 	|UpArrow
 +Weapons
 	|SpearInHand
+	|Spear
 |PlayerStart
 |Block
 |Platform
