@@ -22,7 +22,7 @@ y = baseY
 change_skin(skin_noarm)
 
 throwing = false
-force = 0
+force = 3
 dir = 0
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -50,11 +50,21 @@ if(!throwing && global.key_pressed[key_X]){
 }
 
 if(throwing && global.key_released[key_X]){
+    if(global.key[key_shoot] || global.key_released[key_shoot]){
+        spear = instance_create(x + (7 * image_xscale), y + (6 * image_yscale), Spear)
+        with(spear){
+            dir = other.dir
+            image_xscale = other.image_xscale
+            image_yscale = other.image_yscale
+            image_angle = dir * image_xscale
+            force = other.force
+        }
+    }
     throwing = false
     image_yscale = 1
     image_angle = 0
     dir = 0
-    force = 0
+    force = 3
     x = baseX
     y = baseY
 }
@@ -71,7 +81,7 @@ image_angle = dir * image_xscale
 
 if(throwing && global.key[key_shoot]){
     if(force <= 10){
-        force += 0.1
+        force += 0.2
     }
     dx = -image_xscale * lengthdir_x(force, image_angle)
     dy = -image_xscale * lengthdir_y(force, image_angle)
@@ -80,11 +90,19 @@ if(throwing && global.key[key_shoot]){
 }
 
 if(throwing && global.key_released[key_shoot]){
+    spear = instance_create(x + (7 * image_xscale), y + (6 * image_yscale), Spear)
+    with(spear){
+        dir = other.dir
+        image_xscale = other.image_xscale
+        image_yscale = other.image_yscale
+        image_angle = dir * image_xscale
+        force = other.force
+    }
     throwing = false
     image_yscale = 1
     image_angle = 0
     dir = 0
-    force = 0
+    force = 3
     x = baseX
     y = baseY
 }
