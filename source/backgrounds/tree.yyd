@@ -1,0 +1,23 @@
+|tile_IWBTG
+|tile_Colors
+|tile_Rainbow
+|tile_Crimson
+|tile_corner
+|bgGameMakerBlock
+|bgMegaman
+|bgFortress
+|bgTree
+|bgTree2
+|bgTree3
+|bgStars
++thumbs
+	|bgThumbDefault
+	|bgThumbClear
+	|bgThumbBroken
++autotiler
+	|bgMarkMazes32
+	|bgMarkMazes16
+	|bgBrownBlock32
+	|bgGuyPipes32
++Example (safe to delete)
+	|bgFire

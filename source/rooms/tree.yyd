@@ -1,0 +1,18 @@
+|rmInit
+|rmTitle
+|rmMenu
+|rmOptions
++Game
+	|rmDifficulty
+	|rmHub
+	+Example (safe to delete)
+		|rmDialogueDemo
+		|rmDialogueDemo2
+		|rmDemo
+		|rmDemo2
+		|rmBoss1
+		|rmMusicSync
+		|rmExtra
+		|rmExBoss
+		|rmClear
+	|rmTemplate
