@@ -7,6 +7,10 @@ applies_to=self
 dir = 0
 force = 0
 moving = true
+
+grav = 0.2
+
+init = false
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -26,20 +30,33 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if(!init){
+    init = true
+    hspeed = image_xscale * lengthdir_x(force, image_angle)
+    vspeed = image_xscale * lengthdir_y(force, image_angle)
 
+    image_angle = dir * image_xscale
+}
 
 if(!moving) exit
 
-image_angle = dir * image_xscale
 
-x += image_xscale * lengthdir_x(force, image_angle)
-y += image_xscale * lengthdir_y(force, image_angle)
+
+if(vspeed <= 10){
+    vspeed += grav
+}
+
+image_xscale = 1
+image_angle = point_direction(x, y, x + hspeed, y + vspeed)
+
 
 b = instance_place(x, y, Block)
 if(b){
     moving = false
     alarm[0] = 200
     mask_index = sprSpear
+    hspeed = 0
+    vspeed = 0
 }
 #define Other_0
 /*"/*'/**//* YYD ACTION

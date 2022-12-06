@@ -105,7 +105,7 @@
     //0 for playing the game over jingle
     //1 for fading the level music out over a second
     //2 for pausing the level music immediately
-    global.gameover_music=0
+    global.gameover_music=1
     //block break:
     //0 for remastered sound effect
     //1 for yuuutu engine

@@ -69,7 +69,7 @@ if(throwing && global.key_released[key_X]){
     y = baseY
 }
 
-if(throwing && global.key[key_up] && dir <= 45){
+if(throwing && global.key[key_up] && dir <= 70){
     dir += 2
 }
 
