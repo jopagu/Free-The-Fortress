@@ -44,29 +44,9 @@ x = baseX
 y = baseY
 
 
-if(!throwing && global.key_pressed[key_X]){
+if(!throwing && global.key_pressed[key_shoot]){
     throwing = true
     image_yscale = -1
-}
-
-if(throwing && global.key_released[key_X]){
-    if(global.key[key_shoot] || global.key_released[key_shoot]){
-        spear = instance_create(x + (7 * image_xscale), y + (6 * image_yscale), Spear)
-        with(spear){
-            dir = other.dir
-            image_xscale = other.image_xscale
-            image_yscale = other.image_yscale
-            image_angle = dir * image_xscale
-            force = other.force
-        }
-    }
-    throwing = false
-    image_yscale = 1
-    image_angle = 0
-    dir = 0
-    force = 3
-    x = baseX
-    y = baseY
 }
 
 if(throwing && global.key[key_up] && dir <= 70){
@@ -88,6 +68,7 @@ if(throwing && global.key[key_shoot]){
     x += dx
     y += dy
 }
+
 
 if(throwing && global.key_released[key_shoot]){
     spear = instance_create(x + (7 * image_xscale), y + (6 * image_yscale), Spear)
