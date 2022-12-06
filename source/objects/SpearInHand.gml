@@ -47,6 +47,7 @@ y = baseY
 if(!throwing && global.key_pressed[key_shoot]){
     throwing = true
     image_yscale = -1
+    sprite_index = sprSpearHandFlip
 }
 
 if(throwing && global.key[key_up] && dir <= 70){
@@ -75,12 +76,12 @@ if(throwing && global.key_released[key_shoot]){
     with(spear){
         dir = other.dir
         image_xscale = other.image_xscale
-        image_yscale = other.image_yscale
         image_angle = dir * image_xscale
         force = other.force
     }
     throwing = false
     image_yscale = 1
+    sprite_index = sprSpearHand
     image_angle = 0
     dir = 0
     force = 3

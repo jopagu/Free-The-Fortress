@@ -49,6 +49,10 @@ if(vspeed <= 10){
 image_xscale = 1
 image_angle = point_direction(x, y, x + hspeed, y + vspeed)
 
+if(image_angle > 90 && image_angle < 270){
+    image_yscale = -1
+}
+
 
 b = instance_place(x, y, Block)
 if(b){
