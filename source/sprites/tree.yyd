@@ -351,6 +351,7 @@
 	|sprCageMask
 	|sprCage
 	|sprUpArrow
+	|sprGate
 +Heads
 	|sprKidHead
 	|sprKidHeadBow

@@ -82,6 +82,7 @@ if(throwing && global.key[key_shoot]){
 
 
 if(throwing && global.key_released[key_shoot]){
+    sound_play("sndWhoosh")
     spear = instance_create(x + (7 * image_xscale), y + (6 * image_yscale), Spear)
     with(spear){
         dir = other.dir

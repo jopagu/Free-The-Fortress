@@ -382,6 +382,8 @@
 +Decorations
 	|Cage
 	|UpArrow
+	|Gate
+	|TargetGate
 +Weapons
 	|SpearInHand
 	|Spear
