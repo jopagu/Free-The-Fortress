@@ -361,3 +361,7 @@
 	|sprSlimeRight
 	|sprMadelineHead
 	|sprTestSquare
++Enemies
+	|sprEvilFire
+	|sprWing
+	|sprFireball

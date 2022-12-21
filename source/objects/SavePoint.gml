@@ -37,6 +37,9 @@ if (global.contact_saves) {
     event_user(0)
 } else if (global.press_s_saves) {
     notice=1
+    if(global.key_pressed[key_shoot]){
+        event_user(0)
+    }
 }
 #define Collision_Bullet
 /*"/*'/**//* YYD ACTION

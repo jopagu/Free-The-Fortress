@@ -44,11 +44,21 @@ x = baseX
 y = baseY
 
 
-if(!throwing && global.key_pressed[key_shoot]){
-    throwing = true
-    image_yscale = -1
-    sprite_index = sprSpearHandFlip
+if(global.key_pressed[key_X]){
+    if(throwing){
+        image_yscale = 1
+        sprite_index = sprSpearHand
+        dir = 0
+        force = 3
+        x = baseX
+        y = baseY
+    }else{
+        image_yscale = -1
+        sprite_index = sprSpearHandFlip
+    }
+    throwing = !throwing
 }
+
 
 if(throwing && global.key[key_up] && dir <= 70){
     dir += 2

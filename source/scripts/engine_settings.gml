@@ -131,7 +131,7 @@
     //save automatically when touching saves
     global.contact_saves=false
     //press S to save when touching a save
-    global.press_s_saves=false
+    global.press_s_saves=true
     //let all saves work even while flipped the wrong way
     global.flip_saves=true
     //(0-8) reduces lag during gameplay, but causes small hiccup on room start.

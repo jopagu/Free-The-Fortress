@@ -385,6 +385,9 @@
 +Weapons
 	|SpearInHand
 	|Spear
++Enemies
+	|EvilFire
+	|Wing
 |PlayerStart
 |Block
 |Platform
