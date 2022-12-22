@@ -392,6 +392,9 @@
 	|Wing
 	|FireWall
 	|Biter
+	|Portal
+	|ParticleDark
+	|Particle
 |PlayerStart
 |Block
 |Platform

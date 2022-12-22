@@ -3,3 +3,5 @@
 
 add_gizmo(ExampleGizmo)
 add_gizmo(DialogueHandlerTriggered)
+add_gizmo(FireWall)
+add_gizmo(Portal)

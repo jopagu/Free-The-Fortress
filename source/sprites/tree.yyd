@@ -368,3 +368,6 @@
 	|sprFireball
 	|sprFireWall
 	|sprBiter
+	|sprPortal
+	|sprParticleDark
+	|sprParticle
