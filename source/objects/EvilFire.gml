@@ -35,3 +35,10 @@ with(wingR){
 
     image_angle = -45 * sin(other.t / 50)
 }
+
+d = direction_to_object(Player)
+if(d < 80 || d > 280){
+    image_xscale = -1
+}else if(d >= 100 && d <= 260){
+    image_xscale = 1
+}

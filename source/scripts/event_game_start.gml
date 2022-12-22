@@ -45,16 +45,16 @@ message2=0 message2text=""
 minalpha=0
 minclick=0
 
-if (windows_version==5) {
+/*if (windows_version==5) {
     //windows xp colors
     mincolor1=$e55500
     mincolor2=$ffffff
-} else {
+} else {*/
     //get win10 window colors
     mincolor1=window_get_caption_color()
     if (color_get_luminance(mincolor1)>128) mincolor2=0
     else mincolor2=$ffffff
-}
+//}
 
 global.viewangle=0
 global.pause=false
