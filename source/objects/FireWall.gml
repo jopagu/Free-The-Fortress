@@ -31,6 +31,15 @@ t += 1
 if(image_index >= 3){
     image_index = 3 + ((t/20) mod 2)
 }
+#define Collision_Player
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if(visible){
+    kill_player()
+}
 #define Trigger_Trap is Triggered
 /*"/*'/**//* YYD ACTION
 lib_id=1

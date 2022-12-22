@@ -7,7 +7,7 @@ applies_to=self
 image_speed = 0
 summon = Biter
 summon_interval = 75
-max_hp = 8
+max_hp = 1
 hp = max_hp
 iframes = 0
 
@@ -59,8 +59,8 @@ with(s){
         p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), Particle)
         with(p){
             scale = random_range(0.7, 1)
-            xscale = scale
-            yscale = scale
+            image_xscale = scale
+            image_yscale = scale
         }
     }
 }
@@ -94,7 +94,38 @@ if(other.moving && iframes == 0){
 }
 if(hp == 0){
     with(FireWall){
-        instance_destroy()
+        if(inside_view()){
+            instance_destroy()
+        }
+    }
+    sound_play("sndBossDeath")
+    repeat(random_range(150, 250)){
+        rx = random_range(bbox_left, bbox_right)
+        ry = random_range(bbox_top, bbox_bottom)
+        p = instance_create(rx, ry, ParticleDark)
+        with(p){
+            dir = random(361)
+            spd = random(3)
+            hspeed = lengthdir_x(spd, dir)
+            vspeed = lengthdir_y(spd, dir)
+            scale = random_range(0.7, 1)
+            image_xscale = scale
+            image_yscale = scale
+        }
+    }
+    repeat(random_range(150, 250)){
+        rx = random_range(bbox_left, bbox_right)
+        ry = random_range(bbox_top, bbox_bottom)
+        p = instance_create(rx, ry, Particle)
+        with(p){
+            dir = random(361)
+            spd = random(3)
+            hspeed = lengthdir_x(spd, dir)
+            vspeed = lengthdir_y(spd, dir)
+            scale = random_range(0.7, 1)
+            image_xscale = scale
+            image_yscale = scale
+        }
     }
     instance_destroy()
 }
