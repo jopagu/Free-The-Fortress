@@ -366,6 +366,7 @@
 	|DialogueHandlerInteract
 	|ExampleMovingDialogue
 	|FlagSetter
+	|Bound
 +Example (safe to delete)
 	|ExampleSavingTrap
 	|ExampleRotatingTrap
@@ -395,6 +396,8 @@
 	|Portal
 	|ParticleDark
 	|Particle
+	|Shooter
+	|Shot
 |PlayerStart
 |Block
 |Platform

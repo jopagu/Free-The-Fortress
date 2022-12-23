@@ -88,7 +88,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if(other.moving && iframes == 0){
+if(other.moving && iframes == 0 && visible){
     hp -= 1
     iframes = 50
     sound_play("sndBossHit")
