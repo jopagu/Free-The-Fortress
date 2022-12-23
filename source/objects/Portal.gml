@@ -7,7 +7,7 @@ applies_to=self
 image_speed = 0
 summon = Biter
 summon_interval = 75
-max_hp = 1
+max_hp = 8
 hp = max_hp
 iframes = 0
 
@@ -24,7 +24,7 @@ applies_to=self
 image_index += 1
 
 if(image_index < 2){
-    alarm[0] = 15
+    alarm[0] = 20
 }else{
     alarm[1] = summon_interval
 }
@@ -70,7 +70,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-t += 1
+
 if(iframes > 0){
     iframes -= 1
     image_alpha = 0.5
@@ -79,7 +79,8 @@ if(iframes > 0){
 }
 
 if(image_index >= 2){
-    image_index = 2 + (floor(t/15) mod 2)
+    t += 1
+    image_index = 2 + (floor(t/20) mod 2)
 }
 #define Collision_Spear
 /*"/*'/**//* YYD ACTION
@@ -153,5 +154,6 @@ applies_to=self
 */
 sound_play("sndTear")
 visible = true
-alarm[0] = 15
+alarm[0] = 20
 alarm[1] = summon_interval
+hp = max_hp
