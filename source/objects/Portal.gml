@@ -10,6 +10,8 @@ summon_interval = 75
 max_hp = 8
 hp = max_hp
 iframes = 0
+xoffset = 96
+yoffset = 128
 
 visible = false
 
@@ -34,8 +36,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-rx = x + random_range(-96, 96)
-ry = y + random_range(-128, 128)
+rx = x + random_range(-xoffset, xoffset)
+ry = y + random_range(-yoffset, 0)
 s = instance_create(rx, ry, summon)
 
 sound_play("sndWarp")
