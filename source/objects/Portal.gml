@@ -94,11 +94,15 @@ if(other.moving && iframes == 0 && visible){
     sound_play("sndBossHit")
 }
 if(hp == 0){
-    with(FireWall){
-        if(inside_view()){
-            instance_destroy()
+    instance_deactivate_object(id)
+    if(!instance_exists(Portal)){
+        with(FireWall){
+            if(inside_view()){
+                instance_destroy()
+            }
         }
     }
+    instance_activate_object(id)
     sound_play("sndBossDeath")
     repeat(random_range(150, 250)){
         rx = random_range(bbox_left, bbox_right)

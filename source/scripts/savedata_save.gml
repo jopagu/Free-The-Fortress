@@ -60,6 +60,9 @@ if (difficulty!=3 || argument0) with (Player) if (!dead) {
     savedata("numjumps",maxjumps)
     savedata("vvvvvv",vvvvvv)
     savedata("beamstate",beamstate)
+    savedata("redbg", global.redBG)
+
+
 
     sm = ds_map_write(global.savedDialogueFlags)
     savedata("dialogueFlags", sm)

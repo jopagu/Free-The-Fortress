@@ -29,12 +29,15 @@ if (savedata("saved")) {
     i.vvvvvv=savedata("vvvvvv")
     i.beamstate=savedata("beamstate")
 
+    global.redBG = savedata("redbg")
 
     ds_map_read(global.savedDialogueFlags , savedata("dialogueFlags"))
     ds_map_clear(global.dialogueFlags)
     merge_maps(global.dialogueFlags, global.savedDialogueFlags)
 
     difficulty=savedata("diff")
+
+
 }
 
 global.warp_id=""

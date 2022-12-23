@@ -367,6 +367,7 @@
 	|ExampleMovingDialogue
 	|FlagSetter
 	|Bound
+	|RedBackground
 +Example (safe to delete)
 	|ExampleSavingTrap
 	|ExampleRotatingTrap
