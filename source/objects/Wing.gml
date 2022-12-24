@@ -5,6 +5,27 @@ action_id=603
 applies_to=self
 */
 iframes = 0
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+dx = x + lengthdir_x(-image_xscale * 76, image_angle)
+dy = y + lengthdir_y(-image_xscale * 76, image_angle)
+sound_play("sndWhoosh")
+
+repeat(75){
+    rx = random_range(x, dx)
+    ry = random_range(y, dy)
+    f = instance_create(rx, ry, Feather)
+    with(Feather){
+        dir = random(361)
+        image_angle = dir
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
+    }
+}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
