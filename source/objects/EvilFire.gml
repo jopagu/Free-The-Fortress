@@ -325,6 +325,8 @@ if(phase1){
     event_user(0)
 }else if(phase2){
     event_user(1)
+}else if(phase3){
+    event_user(2)
 }
 
 with(shield){
@@ -442,7 +444,7 @@ if(!portalExists){
         summon = Fireball
         xoffset = 254
         summon_interval = 4
-        max_hp = 15
+        max_hp = 1
         event_user(0)
     }
 }
@@ -461,6 +463,29 @@ if(t mod 9 == 0){
         dir = direction_to_object(Player) + random_range(-30, 11)
         hspeed = lengthdir_x(5, dir)
         vspeed = lengthdir_y(5, dir)
+    }
+}
+#define Other_12
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+
+if(shielded){
+    shielded = false
+    sound_play("sndShatter")
+    with(Shield){
+        instance_destroy()
+    }
+    repeat(10){
+        s = instance_create(x + random_range(-48, 49), y + random_range(-48, 49), ShieldShard)
+        with(s){
+            image_angle = random(361)
+            hspeed = random_range(-4, 5)
+            vspeed = random_range(0, -3)
+            vaccel = random_range(0.05, 0.1)
+        }
     }
 }
 #define Draw_0
