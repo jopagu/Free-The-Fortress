@@ -12,8 +12,8 @@ shielded = true
 baseX = x
 baseY = y
 
-wingMaxHP = 1
-max_hp = 1
+wingMaxHP = 10
+max_hp = 10
 
 iframes = 0
 
@@ -503,7 +503,7 @@ if(r >= 0 && r <= 50){
     }
 }
 
-alarm[7] = 10
+alarm[7] = 15
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -667,7 +667,7 @@ if(!portalExists){
         summon = Fireball
         xoffset = 254
         summon_interval = 4
-        max_hp = 1
+        max_hp = 10
         event_user(0)
     }
 }
