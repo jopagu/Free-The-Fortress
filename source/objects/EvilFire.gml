@@ -17,10 +17,11 @@ wingMaxHP = 10
 enrage = false
 
 attacks = ds_list_create()
-//ds_list_add(attacks, "SplitSpit")
-//ds_list_add(attacks, "Summon")
-//ds_list_add(attacks, "Drop")
+ds_list_add(attacks, "SplitSpit")
+ds_list_add(attacks, "Summon")
+ds_list_add(attacks, "Drop")
 ds_list_add(attacks, "Laser")
+ds_list_add(attacks, "Feathers")
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -80,6 +81,10 @@ switch attack{
         laserCount = 0
         alarm[5] = 1
         break
+    case "Feathers":
+        featherCount = 0
+        alarm[6] = 1
+        break
 }
 #define Alarm_2
 /*"/*'/**//* YYD ACTION
@@ -127,8 +132,12 @@ if(enrage){
 }
 
 spitCount += 1
-if(spitCount < 5){
-    alarm[2] = 25
+if(spitCount < 10){
+    if(!enrage){
+        alarm[2] = 15
+    }else{
+        alarm[2] = 9
+    }
 }else{
     alarm[1] = 100
 }
@@ -210,6 +219,8 @@ action_id=603
 applies_to=self
 */
 
+sound_play("sndLaser")
+
 if(!enrage){
     laserAccel = 0
 }else{
@@ -226,6 +237,53 @@ with(l){
 laserCount += 1
 if(laserCount < 80){
     alarm[5] = random_range(2, 5)
+}else{
+    alarm[1] = 100
+}
+#define Alarm_6
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if(!enrage){
+    reps = 2
+}else{
+    reps = 4
+}
+
+sound_play("sndWhoosh")
+
+with(wingL){
+    dx = x + lengthdir_x(-76, image_angle)
+    dy = y + lengthdir_y(-76, image_angle)
+    repeat(other.reps){
+        f = instance_create(dx, dy, Feather)
+        with(f){
+            dir = direction_to_object(Player) + random_range(-45, 46)
+            image_angle = dir
+            hspeed = lengthdir_x(4, dir)
+            vspeed = lengthdir_y(4, dir)
+        }
+    }
+}
+with(wingR){
+    dx = x + lengthdir_x(76, image_angle)
+    dy = y + lengthdir_y(76, image_angle)
+    repeat(other.reps){
+        f = instance_create(dx, dy, Feather)
+        with(f){
+            dir = direction_to_object(Player) + random_range(-45, 46)
+            image_angle = dir
+            hspeed = lengthdir_x(4, dir)
+            vspeed = lengthdir_y(4, dir)
+        }
+    }
+}
+
+featherCount += 1
+if(featherCount < 8){
+    alarm[6] = 25
 }else{
     alarm[1] = 100
 }
