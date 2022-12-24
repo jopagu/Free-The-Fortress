@@ -19,6 +19,7 @@ enrage = false
 attacks = ds_list_create()
 ds_list_add(attacks, "SplitSpit")
 ds_list_add(attacks, "Summon")
+ds_list_add(attacks, "Drop")
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -69,6 +70,10 @@ switch attack{
     case "Summon":
         summonCount = 0
         alarm[3] = 1
+        break
+    case "Drop":
+        dropCount = 0
+        alarm[4] = 1
         break
 }
 #define Alarm_2
@@ -170,6 +175,28 @@ if(!enrage){
     }else{
         alarm[1] = 250
     }
+}
+#define Alarm_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+
+
+repeat(2){
+    instance_create(x + floor(random_range(-32, 32)), y + floor(random_range(-32, 32)), Fireball)
+}
+
+dropCount += 1
+if(dropCount < 40){
+    if(!enrage){
+        alarm[4] = random_range(10, 16)
+    }else{
+        alarm[4] = random_range(4, 9)
+    }
+}else{
+    alarm[1] = 100
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION
