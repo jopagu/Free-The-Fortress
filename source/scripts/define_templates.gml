@@ -14,3 +14,11 @@ add_template_parameter("Kid", "name", "Kid")
 add_template("Captain")
 add_template_parameter("Captain", "image", sprKnightHead)
 add_template_parameter("Captain", "name", "Captain")
+
+add_template("Maker")
+add_template_parameter("Maker", "image", sprMystery)
+add_template_parameter("Maker", "name", "Maker")
+
+add_template("Jopagu")
+add_template_parameter("Jopagu", "image", sprJopagu)
+add_template_parameter("Jopagu", "name", "Jopagu")

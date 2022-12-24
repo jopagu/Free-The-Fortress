@@ -196,13 +196,13 @@
 	|draw_cherry
 +dialogue
 	|dialogue_defaults
+	|define_templates
 	|draw_dialogue_box
 	|add_parameter
 	|add_message
 	|add_template
 	|add_template_parameter
 	|merge_maps
-	|define_templates
 	|draw_text_outline_alpha
 	|draw_text_outline_trans
 	|set_dialogue_flag

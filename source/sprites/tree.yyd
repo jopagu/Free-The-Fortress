@@ -353,6 +353,7 @@
 	|sprUpArrow
 	|sprGate
 	|sprTent
+	|sprSpoilers
 +Heads
 	|sprKidHead
 	|sprKidHeadBow
@@ -364,6 +365,8 @@
 	|sprMadelineHead
 	|sprTestSquare
 	|sprKnightHead
+	|sprJopagu
+	|sprMystery
 +Enemies
 	|sprEvilFire
 	|sprShield

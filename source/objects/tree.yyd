@@ -389,6 +389,7 @@
 	|Gate
 	|TargetGate
 	|Tent
+	|RevealMaker
 +Weapons
 	|SpearInHand
 	|Spear
