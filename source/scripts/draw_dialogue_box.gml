@@ -69,7 +69,7 @@ imageSpriteHeight = imageBoxWidth - (2 * imageBorderWidth) - (2 * imageYSpriteOf
 textImageGap = 22
 textBorderGap = imageBorderGap + imageBoxWidth + textImageGap
 
-
+draw_set_font(fontName)
 sh = string_height(name)
 sw = string_width(name)
 
