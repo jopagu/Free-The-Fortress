@@ -4,6 +4,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+
+if(savedata("clear")){
+    instance_destroy()
+}
 if(global.redBG){
     background_color = make_color_rgb(217, 74, 74)
 }

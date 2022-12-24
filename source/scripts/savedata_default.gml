@@ -33,6 +33,7 @@ savedata("redBG", false)
 savedata("bgm", "Normal")
 global.redBG = false
 global.bgm = "Normal"
+global.oldBG = noone
 
 ds_grid_resize(global.statgrid,3,1)
 global.statgridh=1

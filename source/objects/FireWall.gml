@@ -31,6 +31,10 @@ t += 1
 if(image_index >= 3){
     image_index = 3 + ((t/20) mod 2)
 }
+
+if(savedata("clear")){
+    instance_destroy()
+}
 #define Collision_Player
 /*"/*'/**//* YYD ACTION
 lib_id=1

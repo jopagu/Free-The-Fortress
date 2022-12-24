@@ -13,6 +13,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+
+if(savedata("clear")){
+    instance_destroy()
+}
 song = global.bgm
 if(song != prevSong){
     play_bg_music(song, true)

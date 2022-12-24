@@ -12,8 +12,8 @@ shielded = true
 baseX = x
 baseY = y
 
-wingMaxHP = 10
-max_hp = 10
+wingMaxHP = 1
+max_hp = 1
 
 iframes = 0
 
@@ -26,12 +26,67 @@ phase3 = false
 portalExists = false
 portal = noone
 
+cleanDeath = false
+
 attacks = ds_list_create()
 ds_list_add(attacks, "SplitSpit")
 ds_list_add(attacks, "Summon")
 ds_list_add(attacks, "Drop")
 ds_list_add(attacks, "Laser")
 ds_list_add(attacks, "Feathers")
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if(cleanDeath) exit
+
+with(FireWall){
+    instance_destroy()
+}
+with(Biter){
+    instance_destroy()
+}
+with(Shooter){
+    instance_destroy()
+}
+global.redBG = false
+background_color = global.oldBG
+global.bgm = "End"
+savedata("clear",true)
+savedata_write()
+
+
+sound_play("sndBossDeath")
+repeat(random_range(150, 250)){
+    rx = random_range(bbox_left, bbox_right)
+    ry = random_range(bbox_top, bbox_bottom)
+    p = instance_create(rx, ry, ParticleDark)
+    with(p){
+        dir = random(361)
+        spd = random(3)
+        hspeed = lengthdir_x(spd, dir)
+        vspeed = lengthdir_y(spd, dir)
+        scale = random_range(0.7, 1)
+        image_xscale = scale
+        image_yscale = scale
+    }
+}
+repeat(random_range(150, 250)){
+    rx = random_range(bbox_left, bbox_right)
+    ry = random_range(bbox_top, bbox_bottom)
+    p = instance_create(rx, ry, Particle)
+    with(p){
+        dir = random(361)
+        spd = random(3)
+        hspeed = lengthdir_x(spd, dir)
+        vspeed = lengthdir_y(spd, dir)
+        scale = random_range(0.7, 1)
+        image_xscale = scale
+        image_yscale = scale
+    }
+}
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -455,6 +510,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+
+
+if(savedata("clear")){
+    cleanDeath = true
+    instance_destroy()
+}
 if(!active) exit
 
 t += 1
@@ -606,7 +667,7 @@ if(!portalExists){
         summon = Fireball
         xoffset = 254
         summon_interval = 4
-        max_hp = 10
+        max_hp = 1
         event_user(0)
     }
 }

@@ -31,6 +31,7 @@ if (savedata("saved")) {
     global.bgm = savedata("bgm")
 
     global.redBG = savedata("redbg")
+    global.oldBG = savedata("oldbg")
 
     ds_map_read(global.savedDialogueFlags , savedata("dialogueFlags"))
     ds_map_clear(global.dialogueFlags)

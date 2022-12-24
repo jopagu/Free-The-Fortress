@@ -73,6 +73,11 @@ action_id=603
 applies_to=self
 */
 
+if(savedata("clear")){
+    instance_destroy()
+}
+
+
 if(iframes > 0){
     iframes -= 1
     image_alpha = 0.5
