@@ -17,9 +17,10 @@ wingMaxHP = 10
 enrage = false
 
 attacks = ds_list_create()
-ds_list_add(attacks, "SplitSpit")
-ds_list_add(attacks, "Summon")
-ds_list_add(attacks, "Drop")
+//ds_list_add(attacks, "SplitSpit")
+//ds_list_add(attacks, "Summon")
+//ds_list_add(attacks, "Drop")
+ds_list_add(attacks, "Laser")
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -74,6 +75,10 @@ switch attack{
     case "Drop":
         dropCount = 0
         alarm[4] = 1
+        break
+    case "Laser":
+        laserCount = 0
+        alarm[5] = 1
         break
 }
 #define Alarm_2
@@ -195,6 +200,32 @@ if(dropCount < 40){
     }else{
         alarm[4] = random_range(4, 9)
     }
+}else{
+    alarm[1] = 100
+}
+#define Alarm_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+
+if(!enrage){
+    laserAccel = 0
+}else{
+    laserAccel = 0.1
+}
+
+l = instance_create(x, y, Laser)
+with(l){
+    dir = random_range(190, 351)
+    spd = 3
+    accel = other.laserAccel
+}
+
+laserCount += 1
+if(laserCount < 80){
+    alarm[5] = random_range(2, 5)
 }else{
     alarm[1] = 100
 }

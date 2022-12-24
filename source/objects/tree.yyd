@@ -403,6 +403,7 @@
 	|Shot
 	|Fireball
 	|Shield
+	|Laser
 |PlayerStart
 |Block
 |Platform
