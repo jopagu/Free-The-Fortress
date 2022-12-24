@@ -13,6 +13,9 @@ baseX = x
 baseY = y
 
 wingMaxHP = 1
+max_hp = 15
+
+iframes = 0
 
 enrage = false
 
@@ -315,6 +318,14 @@ if(enrage){
     t2 += 0.5
 }
 
+
+if(iframes > 0){
+    iframes -= 1
+    image_alpha = 0.5
+}else{
+    image_alpha = 1
+}
+
 if(!enrage){
     image_index = 3 + (floor(t/15) mod 4)
 }else{
@@ -355,6 +366,13 @@ if(active && shielded && other.moving){
     with(other){
         instance_destroy()
     }
+}else if(active && other.moving && iframes <= 0){
+    sound_play("sndBossHit")
+    hp -= 1
+    if(hp <= 0){
+        instance_destroy()
+    }
+    iframes = 50
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -498,6 +516,16 @@ draw_self()
 
 if(!active) exit
 
+if(phase3){
+    hp_percent = hp/max_hp
+    draw_set_color(c_green)
+    draw_rectangle(x - 64, y - 48, (x - 64) + (128 * hp_percent), y - 52, false)
+    if(hp < max_hp){
+        draw_set_color(c_red)
+        draw_rectangle((x - 64) + (128 * hp_percent) + 1, y - 48, x + 64, y - 52, false)
+    }
+}
+
 with(wingL){
 
     hp_percent = hp/max_hp
@@ -528,3 +556,4 @@ applies_to=self
 visible = true
 alarm[0] = 15
 sound_play("sndTear")
+hp = max_hp
