@@ -18,6 +18,7 @@ enrage = false
 
 attacks = ds_list_create()
 ds_list_add(attacks, "SplitSpit")
+ds_list_add(attacks, "Summon")
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -60,9 +61,15 @@ applies_to=self
 r = floor(random(ds_list_size(attacks)))
 attack = ds_list_find_value(attacks, r)
 
-if(attack == "SplitSpit"){
-    spitCount = 0
-    alarm[2] = 1
+switch attack{
+    case "SplitSpit":
+        spitCount = 0
+        alarm[2] = 1
+        break
+    case "Summon":
+        summonCount = 0
+        alarm[3] = 1
+        break
 }
 #define Alarm_2
 /*"/*'/**//* YYD ACTION
@@ -113,7 +120,56 @@ spitCount += 1
 if(spitCount < 5){
     alarm[2] = 25
 }else{
-    alarm[1] = 50
+    alarm[1] = 100
+}
+#define Alarm_3
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+rx = x + random_range(-128, 128)
+ry = y + random_range(-128, 0)
+s = instance_create(rx, ry, choose(Biter, Shooter))
+
+sound_play("sndWarp")
+
+with(s){
+    repeat(random_range(10, 21)){
+        degree = random(361)
+        dist = random(32)
+        p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), ParticleDark)
+        with(p){
+            scale = random_range(0.7, 1)
+            xscale = scale
+            yscale = scale
+        }
+    }
+    repeat(random_range(10, 21)){
+        degree = random(361)
+        dist = random(32)
+        p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), Particle)
+        with(p){
+            scale = random_range(0.7, 1)
+            image_xscale = scale
+            image_yscale = scale
+        }
+    }
+}
+
+summonCount += 1
+if(!enrage){
+    if(summonCount < 3){
+        alarm[3] = 15
+    }else{
+        alarm[1] = 200
+    }
+}else{
+    if(summonCount < 5){
+        alarm[3] = 15
+    }else{
+        alarm[1] = 250
+    }
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -124,7 +180,9 @@ applies_to=self
 if(!active) exit
 
 t += 1
-
+if(enrage){
+    t2 += 0.5
+}
 
 
 if(!enrage){
@@ -133,8 +191,8 @@ if(!enrage){
     y = baseY + (50 * cos(t /25))
 }else{
     image_index = 7 + (floor(t/15) mod 4)
-    x = baseX + (200 * sin((t * 1.5) /50))
-    y = baseY + (50 * cos((t * 1.5) /25))
+    x = baseX + (200 * sin(((t + t2) /50)))
+    y = baseY + (50 * cos(((t + t2) /25)))
 }
 
 wingHP = 0
@@ -175,6 +233,7 @@ with(wingR){
 
 if(wingHP <= wingMaxHP && !enrage){
     enrage = true
+    t2 = 0
     sound_play("sndRoar")
 }
 
