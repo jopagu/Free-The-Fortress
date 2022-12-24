@@ -220,7 +220,7 @@ if(!phase1) exit
 
 rx = x + random_range(-128, 128)
 ry = y + random_range(-64, 0)
-s = instance_create(rx, ry, choose(Biter, Shooter))
+s = instance_create(rx, ry, choose(Biter, Biter, Shooter))
 
 sound_play("sndWarp")
 
@@ -249,13 +249,13 @@ with(s){
 
 summonCount += 1
 if(!enrage){
-    if(summonCount < 3){
+    if(summonCount < 2){
         alarm[3] = 15
     }else{
         alarm[1] = 200
     }
 }else{
-    if(summonCount < 5){
+    if(summonCount < 4){
         alarm[3] = 15
     }else{
         alarm[1] = 250
