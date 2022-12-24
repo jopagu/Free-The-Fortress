@@ -12,8 +12,8 @@ shielded = true
 baseX = x
 baseY = y
 
-wingMaxHP = 1
-max_hp = 15
+wingMaxHP = 10
+max_hp = 10
 
 iframes = 0
 
@@ -305,6 +305,150 @@ if(featherCount < 8){
 }else{
     alarm[1] = 100
 }
+#define Alarm_7
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+
+r = floor(random(101))
+
+if(r >= 0 && r <= 50){
+    sound_play("sndLaser")
+    l = instance_create(x, y, Laser)
+    with(l){
+        dir = direction_to_object(Player) + random_range(-30, 11)
+        hspeed = lengthdir_x(5, dir)
+        vspeed = lengthdir_y(5, dir)
+        accel = 0.2
+    }
+}else if(r <= 70){
+    sound_play("sndWarp")
+    repeat(random_range(5, 11)){
+        rx = random_range(view_xview + 200, view_xview + 701)
+        ry = random_range(100, 251)
+        s = instance_create(rx, ry, Fireball)
+
+        with(s){
+            repeat(random_range(10, 21)){
+                degree = random(361)
+                dist = random(32)
+                p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), ParticleDark)
+                with(p){
+                    scale = random_range(0.7, 1)
+                    xscale = scale
+                    yscale = scale
+                }
+            }
+            repeat(random_range(10, 21)){
+                degree = random(361)
+                dist = random(32)
+                p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), Particle)
+                with(p){
+                    scale = random_range(0.7, 1)
+                    image_xscale = scale
+                    image_yscale = scale
+                }
+            }
+        }
+    }
+}else if(r <= 90){
+    sound_play("sndSpit")
+    s1 = instance_create(x,y, Shot)
+    with(s1){
+        dir = direction_to_object(Player)
+        image_angle = dir
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
+    }
+    s2 = instance_create(x,y, Shot)
+    with(s2){
+        dir = direction_to_object(Player) + 20
+        image_angle = dir
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
+    }
+    s3 = instance_create(x,y, Shot)
+    with(s3){
+        dir = direction_to_object(Player) - 20
+        image_angle = dir
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
+    }
+    if(enrage){
+        s4 = instance_create(x,y, Shot)
+        with(s4){
+            dir = direction_to_object(Player) + 40
+            image_angle = dir
+            hspeed = lengthdir_x(4, dir)
+            vspeed = lengthdir_y(4, dir)
+        }
+        s4 = instance_create(x,y, Shot)
+        with(s4){
+            dir = direction_to_object(Player) - 40
+            image_angle = dir
+            hspeed = lengthdir_x(4, dir)
+            vspeed = lengthdir_y(4, dir)
+        }
+    }
+}else if(r <= 95){
+    rx = random_range(view_xview + 200, view_xview + 701)
+    ry = random_range(100, 251)
+    s = instance_create(rx, ry, Biter)
+    sound_play("sndWarp")
+    with(s){
+        repeat(random_range(10, 21)){
+            degree = random(361)
+            dist = random(32)
+            p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), ParticleDark)
+            with(p){
+                scale = random_range(0.7, 1)
+                xscale = scale
+                yscale = scale
+            }
+        }
+        repeat(random_range(10, 21)){
+            degree = random(361)
+            dist = random(32)
+            p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), Particle)
+            with(p){
+                scale = random_range(0.7, 1)
+                image_xscale = scale
+                image_yscale = scale
+            }
+        }
+    }
+}else{
+    rx = random_range(view_xview + 200, view_xview + 701)
+    ry = random_range(100, 251)
+    s = instance_create(rx, ry, Shooter)
+    sound_play("sndWarp")
+    with(s){
+        repeat(random_range(10, 21)){
+            degree = random(361)
+            dist = random(32)
+            p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), ParticleDark)
+            with(p){
+                scale = random_range(0.7, 1)
+                xscale = scale
+                yscale = scale
+            }
+        }
+        repeat(random_range(10, 21)){
+            degree = random(361)
+            dist = random(32)
+            p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), Particle)
+            with(p){
+                scale = random_range(0.7, 1)
+                image_xscale = scale
+                image_yscale = scale
+            }
+        }
+    }
+}
+
+alarm[7] = 10
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -462,7 +606,7 @@ if(!portalExists){
         summon = Fireball
         xoffset = 254
         summon_interval = 4
-        max_hp = 1
+        max_hp = 10
         event_user(0)
     }
 }
@@ -474,7 +618,7 @@ if(!instance_exists(portal)){
     sound_play("sndRoar")
 }
 
-if(t mod 9 == 0){
+if(t mod 12 == 0){
     sound_play("sndLaser")
     l = instance_create(x, y, Laser)
     with(l){
@@ -505,6 +649,7 @@ if(shielded){
             vaccel = random_range(0.05, 0.1)
         }
     }
+    alarm[7] = 1
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
