@@ -388,6 +388,7 @@
 	|UpArrow
 	|Gate
 	|TargetGate
+	|Tent
 +Weapons
 	|SpearInHand
 	|Spear

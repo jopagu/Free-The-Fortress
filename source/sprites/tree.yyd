@@ -352,6 +352,7 @@
 	|sprCage
 	|sprUpArrow
 	|sprGate
+	|sprTent
 +Heads
 	|sprKidHead
 	|sprKidHeadBow
@@ -362,6 +363,7 @@
 	|sprSlimeRight
 	|sprMadelineHead
 	|sprTestSquare
+	|sprKnightHead
 +Enemies
 	|sprEvilFire
 	|sprShield
