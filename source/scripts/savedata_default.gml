@@ -29,6 +29,10 @@ global.savedDialogueFlags = ds_map_create()
 
 savedata("skin",global.player_skin)
 savedata("weapon",global.player_weapon)
+savedata("redBG", false)
+savedata("bgm", "Normal")
+global.redBG = false
+global.bgm = "Normal"
 
 ds_grid_resize(global.statgrid,3,1)
 global.statgridh=1

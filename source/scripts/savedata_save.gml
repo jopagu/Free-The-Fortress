@@ -61,6 +61,7 @@ if (difficulty!=3 || argument0) with (Player) if (!dead) {
     savedata("vvvvvv",vvvvvv)
     savedata("beamstate",beamstate)
     savedata("redbg", global.redBG)
+    savedata("bgm", global.bgm)
 
 
 

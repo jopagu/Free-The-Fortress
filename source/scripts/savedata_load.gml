@@ -28,6 +28,7 @@ if (savedata("saved")) {
     i.maxjumps=savedata("numjumps")
     i.vvvvvv=savedata("vvvvvv")
     i.beamstate=savedata("beamstate")
+    global.bgm = savedata("bgm")
 
     global.redBG = savedata("redbg")
 
