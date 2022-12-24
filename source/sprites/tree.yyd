@@ -364,6 +364,7 @@
 	|sprTestSquare
 +Enemies
 	|sprEvilFire
+	|sprShield
 	|sprWing
 	|sprFireball
 	|sprFireWall
