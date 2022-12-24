@@ -12,9 +12,16 @@ shielded = true
 baseX = x
 baseY = y
 
-wingMaxHP = 10
+wingMaxHP = 1
 
 enrage = false
+
+phase1 = true
+phase2 = false
+phase3 = false
+
+portalExists = false
+portal = noone
 
 attacks = ds_list_create()
 ds_list_add(attacks, "SplitSpit")
@@ -61,30 +68,32 @@ action_id=603
 applies_to=self
 */
 
-r = floor(random(ds_list_size(attacks)))
-attack = ds_list_find_value(attacks, r)
+if(phase1){
+    r = floor(random(ds_list_size(attacks)))
+    attack = ds_list_find_value(attacks, r)
 
-switch attack{
-    case "SplitSpit":
-        spitCount = 0
-        alarm[2] = 1
-        break
-    case "Summon":
-        summonCount = 0
-        alarm[3] = 1
-        break
-    case "Drop":
-        dropCount = 0
-        alarm[4] = 1
-        break
-    case "Laser":
-        laserCount = 0
-        alarm[5] = 1
-        break
-    case "Feathers":
-        featherCount = 0
-        alarm[6] = 1
-        break
+    switch attack{
+        case "SplitSpit":
+            spitCount = 0
+            alarm[2] = 1
+            break
+        case "Summon":
+            summonCount = 0
+            alarm[3] = 1
+            break
+        case "Drop":
+            dropCount = 0
+            alarm[4] = 1
+            break
+        case "Laser":
+            laserCount = 0
+            alarm[5] = 1
+            break
+        case "Feathers":
+            featherCount = 0
+            alarm[6] = 1
+            break
+    }
 }
 #define Alarm_2
 /*"/*'/**//* YYD ACTION
@@ -92,6 +101,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if(!phase1) exit
+
 sound_play("sndSpit")
 s1 = instance_create(x,y, Shot)
 with(s1){
@@ -147,8 +158,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if(!phase1) exit
+
 rx = x + random_range(-128, 128)
-ry = y + random_range(-128, 0)
+ry = y + random_range(-64, 0)
 s = instance_create(rx, ry, choose(Biter, Shooter))
 
 sound_play("sndWarp")
@@ -196,7 +209,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-
+if(!phase1) exit
 
 repeat(2){
     instance_create(x + floor(random_range(-32, 32)), y + floor(random_range(-32, 32)), Fireball)
@@ -218,6 +231,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if(!phase1) exit
 
 sound_play("sndLaser")
 
@@ -246,6 +260,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if(!phase1) exit
 if(!enrage){
     reps = 2
 }else{
@@ -300,13 +315,58 @@ if(enrage){
     t2 += 0.5
 }
 
-
 if(!enrage){
     image_index = 3 + (floor(t/15) mod 4)
+}else{
+    image_index = 7 + (floor(t/15) mod 4)
+}
+
+if(phase1){
+    event_user(0)
+}else if(phase2){
+    event_user(1)
+}
+
+with(shield){
+    x = other.x
+    y = other.y
+}
+
+d = direction_to_object(Player)
+if(d < 80 || d > 280){
+    image_xscale = -1
+}else if(d >= 100 && d <= 260){
+    image_xscale = 1
+}
+#define Collision_Spear
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if(active && shielded && other.moving){
+    sound_play("sndTing")
+    with(shield){
+        visible = true
+        alarm[0] = 30
+    }
+    with(other){
+        instance_destroy()
+    }
+}
+#define Other_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+
+if(!enrage){
+
     x = baseX + (200 * sin(t /50))
     y = baseY + (50 * cos(t /25))
 }else{
-    image_index = 7 + (floor(t/15) mod 4)
+
     x = baseX + (200 * sin(((t + t2) /50)))
     y = baseY + (50 * cos(((t + t2) /25)))
 }
@@ -353,31 +413,54 @@ if(wingHP <= wingMaxHP && !enrage){
     sound_play("sndRoar")
 }
 
-with(shield){
-    x = other.x
-    y = other.y
+if(numWings <= 0){
+    sound_play("sndRoar")
+    phase1 = false
+    phase2 = true
+    if(x - xprevious >= 0){
+        hspeed = 1
+    }else{
+        hspeed = -1
+    }
+    vspeed = 3
 }
-
-d = direction_to_object(Player)
-if(d < 80 || d > 280){
-    image_xscale = -1
-}else if(d >= 100 && d <= 260){
-    image_xscale = 1
-}
-#define Collision_Spear
+#define Other_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-if(active && shielded && other.moving){
-    sound_play("sndTing")
-    with(shield){
-        visible = true
-        alarm[0] = 30
+if(!instance_place(x, y, Block)) exit
+
+vspeed = 0
+hspeed = 0
+
+if(!portalExists){
+    portalExists = true
+    portal = instance_create(view_xview + (global.width / 2), 160, Portal)
+    with(portal){
+        summon = Fireball
+        xoffset = 254
+        summon_interval = 4
+        max_hp = 15
+        event_user(0)
     }
-    with(other){
-        instance_destroy()
+}
+
+if(!instance_exists(portal)){
+    portalExits = false
+    phase2 = false
+    phase3 = true
+    sound_play("sndRoar")
+}
+
+if(t mod 9 == 0){
+    sound_play("sndLaser")
+    l = instance_create(x, y, Laser)
+    with(l){
+        dir = direction_to_object(Player) + random_range(-30, 11)
+        hspeed = lengthdir_x(5, dir)
+        vspeed = lengthdir_y(5, dir)
     }
 }
 #define Draw_0

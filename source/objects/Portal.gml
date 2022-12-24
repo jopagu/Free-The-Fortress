@@ -97,7 +97,7 @@ if(other.moving && iframes == 0 && visible){
 }
 if(hp == 0){
     instance_deactivate_object(id)
-    if(!instance_exists(Portal)){
+    if(!instance_exists(Portal) && !instance_exists(EvilFire)){
         with(FireWall){
             if(inside_view()){
                 instance_destroy()
@@ -136,6 +136,17 @@ if(hp == 0){
     }
     instance_destroy()
 }
+#define Other_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+sound_play("sndTear")
+visible = true
+alarm[0] = 20
+alarm[1] = summon_interval
+hp = max_hp
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -158,8 +169,4 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-sound_play("sndTear")
-visible = true
-alarm[0] = 20
-alarm[1] = summon_interval
-hp = max_hp
+event_user(0)

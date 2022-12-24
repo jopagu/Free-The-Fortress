@@ -15,11 +15,11 @@ dx = x + lengthdir_x(-image_xscale * 76, image_angle)
 dy = y + lengthdir_y(-image_xscale * 76, image_angle)
 sound_play("sndWhoosh")
 
-repeat(75){
+repeat(50){
     rx = random_range(x, dx)
     ry = random_range(y, dy)
     f = instance_create(rx, ry, Feather)
-    with(Feather){
+    with(f){
         dir = random(361)
         image_angle = dir
         hspeed = lengthdir_x(4, dir)
