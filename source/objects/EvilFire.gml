@@ -11,6 +11,13 @@ shielded = true
 
 baseX = x
 baseY = y
+
+wingMaxHP = 10
+
+enrage = false
+
+attacks = ds_list_create()
+ds_list_add(attacks, "SplitSpit")
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -30,17 +37,83 @@ if(image_index < 3){
     }
     numWings = 2
     with(wingL){
-        max_hp = 10
+        max_hp = other.wingMaxHP
         hp = max_hp
     }
     with(wingR){
-        max_hp = 10
+        max_hp = other.wingMaxHP
         hp = max_hp
         image_xscale = -1
     }
 
     t = 0
     active = true
+    alarm[1] = 50
+}
+#define Alarm_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+
+r = floor(random(ds_list_size(attacks)))
+attack = ds_list_find_value(attacks, r)
+
+if(attack == "SplitSpit"){
+    spitCount = 0
+    alarm[2] = 1
+}
+#define Alarm_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+sound_play("sndSpit")
+s1 = instance_create(x,y, Shot)
+with(s1){
+    dir = direction_to_object(Player)
+    image_angle = dir
+    hspeed = lengthdir_x(4, dir)
+    vspeed = lengthdir_y(4, dir)
+}
+s2 = instance_create(x,y, Shot)
+with(s2){
+    dir = direction_to_object(Player) + 20
+    image_angle = dir
+    hspeed = lengthdir_x(4, dir)
+    vspeed = lengthdir_y(4, dir)
+}
+s3 = instance_create(x,y, Shot)
+with(s3){
+    dir = direction_to_object(Player) - 20
+    image_angle = dir
+    hspeed = lengthdir_x(4, dir)
+    vspeed = lengthdir_y(4, dir)
+}
+if(enrage){
+    s4 = instance_create(x,y, Shot)
+    with(s4){
+        dir = direction_to_object(Player) + 40
+        image_angle = dir
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
+    }
+    s4 = instance_create(x,y, Shot)
+    with(s4){
+        dir = direction_to_object(Player) - 40
+        image_angle = dir
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
+    }
+}
+
+spitCount += 1
+if(spitCount < 5){
+    alarm[2] = 25
+}else{
+    alarm[1] = 50
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -52,11 +125,19 @@ if(!active) exit
 
 t += 1
 
-image_index = 3 + (floor(t/15) mod 4)
 
-x = baseX + (200 * sin((t * (3 - numWings)) /50))
-y = baseY + (50 * cos((t * (3 - numWings)) /25))
 
+if(!enrage){
+    image_index = 3 + (floor(t/15) mod 4)
+    x = baseX + (200 * sin(t /50))
+    y = baseY + (50 * cos(t /25))
+}else{
+    image_index = 7 + (floor(t/15) mod 4)
+    x = baseX + (200 * sin((t * 1.5) /50))
+    y = baseY + (50 * cos((t * 1.5) /25))
+}
+
+wingHP = 0
 with(wingL){
     x = other.bbox_left - 16
     y = other.y
@@ -65,12 +146,14 @@ with(wingL){
 
     if(instance_place(x, y, Spear) && iframes <= 0){
         hp -= 1
+        sound_play("sndBossHit")
         if(hp == 0){
             instance_destroy()
             other.numWings -= 1
         }
         iframes = 50
     }
+    other.wingHP += hp
 }
 
 with(wingR){
@@ -80,13 +163,19 @@ with(wingR){
     image_angle = -45 * sin((other.t * (5 - (other.numWings * 2))) / 50)
     if(instance_place(x, y, Spear) && iframes <= 0){
         hp -= 1
+        sound_play("sndBossHit")
         if(hp == 0){
             instance_destroy()
             other.numWings -= 1
         }
         iframes = 50
     }
+    other.wingHP += hp
+}
 
+if(wingHP <= wingMaxHP && !enrage){
+    enrage = true
+    sound_play("sndRoar")
 }
 
 with(shield){
