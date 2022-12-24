@@ -376,7 +376,6 @@ if(r >= 0 && r <= 50){
         dir = direction_to_object(Player) + random_range(-30, 11)
         hspeed = lengthdir_x(5, dir)
         vspeed = lengthdir_y(5, dir)
-        accel = 0.2
     }
 }else if(r <= 70){
     sound_play("sndWarp")
@@ -666,7 +665,7 @@ if(!portalExists){
     with(portal){
         summon = Fireball
         xoffset = 254
-        summon_interval = 4
+        summon_interval = 5
         max_hp = 10
         event_user(0)
     }

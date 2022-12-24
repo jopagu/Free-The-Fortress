@@ -15,7 +15,7 @@ dx = x + lengthdir_x(-image_xscale * 76, image_angle)
 dy = y + lengthdir_y(-image_xscale * 76, image_angle)
 sound_play("sndWhoosh")
 
-repeat(50){
+repeat(40){
     rx = random_range(x, dx)
     ry = random_range(y, dy)
     f = instance_create(rx, ry, Feather)
