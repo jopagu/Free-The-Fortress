@@ -449,7 +449,7 @@ if(r >= 0 && r <= 50){
 }else{
     rx = random_range(view_xview + 200, view_xview + 701)
     ry = random_range(100, 251)
-    s = instance_create(rx, ry, choose(Biter, Shooter))
+    s = instance_create(rx, ry, Biter)
     sound_play("sndWarp")
     with(s){
         repeat(random_range(10, 21)){
@@ -474,7 +474,7 @@ if(r >= 0 && r <= 50){
         }
     }
 }
-alarm[7] = 15
+alarm[7] = 30
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -650,7 +650,7 @@ if(!instance_exists(portal)){
     sound_play("sndRoar")
 }
 
-if(t mod 15 == 0){
+if(t mod 30 == 0){
     sound_play("sndLaser")
     l = instance_create(x, y, Laser)
     with(l){
