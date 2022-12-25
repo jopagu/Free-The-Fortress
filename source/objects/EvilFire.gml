@@ -220,7 +220,7 @@ if(!phase1) exit
 
 rx = x + random_range(-128, 128)
 ry = y + random_range(-64, 0)
-s = instance_create(rx, ry, choose(Biter, Biter, Shooter))
+s = instance_create(rx, ry, Biter)
 
 sound_play("sndWarp")
 
@@ -249,13 +249,13 @@ with(s){
 
 summonCount += 1
 if(!enrage){
-    if(summonCount < 2){
+    if(summonCount < 3){
         alarm[3] = 15
     }else{
         alarm[1] = 200
     }
 }else{
-    if(summonCount < 4){
+    if(summonCount < 5){
         alarm[3] = 15
     }else{
         alarm[1] = 250
@@ -373,13 +373,13 @@ if(r >= 0 && r <= 50){
     sound_play("sndLaser")
     l = instance_create(x, y, Laser)
     with(l){
-        dir = direction_to_object(Player) + random_range(-30, 11)
-        hspeed = lengthdir_x(5, dir)
-        vspeed = lengthdir_y(5, dir)
+        dir = direction_to_object(Player) + random_range(-20, 20)
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
     }
 }else if(r <= 70){
     sound_play("sndWarp")
-    repeat(random_range(5, 11)){
+    repeat(5){
         rx = random_range(view_xview + 200, view_xview + 701)
         ry = random_range(100, 251)
         s = instance_create(rx, ry, Fireball)
@@ -407,7 +407,7 @@ if(r >= 0 && r <= 50){
             }
         }
     }
-}else if(r <= 90){
+}else if(r <= 95){
     sound_play("sndSpit")
     s1 = instance_create(x,y, Shot)
     with(s1){
@@ -446,37 +446,10 @@ if(r >= 0 && r <= 50){
             vspeed = lengthdir_y(4, dir)
         }
     }
-}else if(r <= 95){
-    rx = random_range(view_xview + 200, view_xview + 701)
-    ry = random_range(100, 251)
-    s = instance_create(rx, ry, Biter)
-    sound_play("sndWarp")
-    with(s){
-        repeat(random_range(10, 21)){
-            degree = random(361)
-            dist = random(32)
-            p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), ParticleDark)
-            with(p){
-                scale = random_range(0.7, 1)
-                xscale = scale
-                yscale = scale
-            }
-        }
-        repeat(random_range(10, 21)){
-            degree = random(361)
-            dist = random(32)
-            p = instance_create(x + lengthdir_x(dist, degree), y + lengthdir_y(dist, degree), Particle)
-            with(p){
-                scale = random_range(0.7, 1)
-                image_xscale = scale
-                image_yscale = scale
-            }
-        }
-    }
 }else{
     rx = random_range(view_xview + 200, view_xview + 701)
     ry = random_range(100, 251)
-    s = instance_create(rx, ry, Shooter)
+    s = instance_create(rx, ry, choose(Biter, Shooter))
     sound_play("sndWarp")
     with(s){
         repeat(random_range(10, 21)){
@@ -501,7 +474,6 @@ if(r >= 0 && r <= 50){
         }
     }
 }
-
 alarm[7] = 15
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -664,7 +636,7 @@ if(!portalExists){
     portal = instance_create(view_xview + (global.width / 2), 160, Portal)
     with(portal){
         summon = Fireball
-        xoffset = 254
+        xoffset = 300
         summon_interval = 5
         max_hp = 10
         event_user(0)
@@ -678,13 +650,13 @@ if(!instance_exists(portal)){
     sound_play("sndRoar")
 }
 
-if(t mod 12 == 0){
+if(t mod 15 == 0){
     sound_play("sndLaser")
     l = instance_create(x, y, Laser)
     with(l){
         dir = direction_to_object(Player) + random_range(-30, 11)
-        hspeed = lengthdir_x(5, dir)
-        vspeed = lengthdir_y(5, dir)
+        hspeed = lengthdir_x(4, dir)
+        vspeed = lengthdir_y(4, dir)
     }
 }
 #define Other_12
