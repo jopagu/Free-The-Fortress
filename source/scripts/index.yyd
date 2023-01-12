@@ -218,3 +218,4 @@ check_dialogue_flag
 add_required_flag
 add_required_false_flag
 skin_noarm
+opt_simple_controls

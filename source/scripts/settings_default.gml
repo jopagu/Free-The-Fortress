@@ -8,5 +8,6 @@ settings("l+r behavior",lr_last)
 settings("blood",3)
 settings("filter",1)
 settings("anim",1)
+settings("simpleControls", "0")
 
 input_default()

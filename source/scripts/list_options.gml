@@ -8,6 +8,6 @@ add_option(opt_fullscreen_filter)
 add_option(opt_animation)
 add_option(opt_blood_amount)
 add_option(opt_left_right)
-
+add_option(opt_simple_controls)
 add_option(opt_rebind_keyboard)
 add_option(opt_rebind_joystick)

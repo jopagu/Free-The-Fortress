@@ -192,6 +192,7 @@
 	|opt_left_right
 	|opt_rebind_keyboard
 	|opt_rebind_joystick
+	|opt_simple_controls
 +bonus
 	|draw_cherry
 +dialogue
