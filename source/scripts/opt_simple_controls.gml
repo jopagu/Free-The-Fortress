@@ -8,7 +8,6 @@ switch (argument0) {
         if (global.key_pressed[key_jump] || global.key_pressed[key_left] || global.key_pressed[key_right]) {
             sound_play_option("sndDJump")
             settings("simpleControls",!settings("simpleControls"))
-            update_fullscreen()
         }
     }break
     case opt_text: {
