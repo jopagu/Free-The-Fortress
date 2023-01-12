@@ -475,6 +475,23 @@ if(r >= 0 && r <= 50){
     }
 }
 alarm[7] = 30
+#define Alarm_8
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+sound_play("sndLaser")
+l = instance_create(x, y, Laser)
+with(l){
+    dir = direction_to_object(Player) + random_range(-20, 20)
+    show_debug_message(dir)
+    spd = 4
+}
+
+if(!phase3){
+    alarm[8] = 30
+}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -637,10 +654,11 @@ if(!portalExists){
     with(portal){
         summon = Fireball
         xoffset = 300
-        summon_interval = 5
+        summon_interval = 7
         max_hp = 10
         event_user(0)
     }
+    alarm[8] = 30
 }
 
 if(!instance_exists(portal)){
@@ -648,16 +666,6 @@ if(!instance_exists(portal)){
     phase2 = false
     phase3 = true
     sound_play("sndRoar")
-}
-
-if(t mod 30 == 0){
-    sound_play("sndLaser")
-    l = instance_create(x, y, Laser)
-    with(l){
-        dir = direction_to_object(Player) + random_range(-30, 11)
-        hspeed = lengthdir_x(4, dir)
-        vspeed = lengthdir_y(4, dir)
-    }
 }
 #define Other_12
 /*"/*'/**//* YYD ACTION

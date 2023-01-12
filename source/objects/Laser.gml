@@ -18,6 +18,10 @@ image_angle = dir
 spd += accel
 x += lengthdir_x(spd, dir)
 y += lengthdir_y(spd, dir)
+
+if(!inside_view()){
+    instance_destroy()
+}
 #define Collision_Block
 /*"/*'/**//* YYD ACTION
 lib_id=1
